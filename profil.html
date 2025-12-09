@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+   
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Mahasiswa — SIPKEL</title>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+    }
+    .container {
+        max-width: 850px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .profile-wrapper {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+    .profile-wrapper img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .bio-box {
+        margin-top: 20px;
+        padding: 20px;
+        background: #fafafa;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+    }
+    .btn-edit {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 22px;
+        background: #444cf7;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Profil Mahasiswa</h2>
+
+    <div class="profile-wrapper">
+        <img id="fotoProfil" src="https://i.pravatar.cc/300" alt="Foto Profil">
+
+        <div>
+            <h3 id="namaProfil">Nama Default</h3>
+            <p><strong>NIM:</strong> <span id="nimProfil"></span></p>
+            <p><strong>Email:</strong> <span id="emailProfil"></span></p>
+            <p><strong>Program Studi:</strong> <span id="prodiProfil"></span></p>
+        </div>
+    </div>
+
+    <div class="bio-box" id="bioProfil">
+        Belum ada bio.
+    </div>
+
+    <a href="EditProfil.html" class="btn-edit">Edit Profil</a>
+</div>
+
+<script>
+    // Ambil data dari localStorage
+    const data = JSON.parse(localStorage.getItem("profilMahasiswa"));
+
+    if (data) {
+        document.getElementById("namaProfil").textContent = data.nama;
+        document.getElementById("nimProfil").textContent = data.nim;
+        document.getElementById("emailProfil").textContent = data.email;
+        document.getElementById("prodiProfil").textContent = data.prodi;
+        document.getElementById("bioProfil").textContent = data.bio;
+        document.getElementById("fotoProfil").src = data.foto;
+    }
+</script>
+
+</body>
+</html>

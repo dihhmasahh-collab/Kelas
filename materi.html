@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Kuliah - SiMaha</title>
+   
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f7f7ff;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5A3DF0;
+            margin-bottom: 35px;
+        }
+
+        .materi-card {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+            border-left: 5px solid #5A3DF0;
+            transition: 0.2s;
+        }
+
+        .materi-card:hover {
+            background: #f4f2ff;
+            transform: translateX(5px);
+        }
+
+        .materi-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .materi-icon {
+            font-size: 32px;
+        }
+
+        .materi-title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .materi-desc {
+            margin: 8px 0 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .btn-download {
+            padding: 10px 18px;
+            background: #5A3DF0;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #4728d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Materi Perkuliahan</h1>
+
+    <!-- Materi 1 -->
+    <div class="materi-card">
+        <div class="materi-header">
+            <div class="materi-icon">📘</div>
+            <h3 class="materi-title">Pemrograman Web - Pertemuan 1</h3>
+        </div>
+        <p class="materi-desc">Pengenalan dasar HTML, CSS, dan struktur halaman web.</p>
+        <a href="#" class="btn-download">Download Materi (PDF)</a>
+    </div>
+
+    <!-- Materi 2 -->
+    <div class="materi-card">
+        <div class="materi-header">
+            <div class="materi-icon">💻</div>
+            <h3 class="materi-title">Algoritma & Pemrograman - Modul 2</h3>
+        </div>
+        <p class="materi-desc">Materi tentang percabangan, perulangan, dan tipe data.</p>
+        <a href="#" class="btn-download">Download PPT</a>
+    </div>
+
+    <!-- Materi 3 -->
+    <div class="materi-card">
+        <div class="materi-header">
+            <div="materi-icon">📊</div>
+            <h3 class="materi-title">Basis Data - Relasi & ERD</h3>
+        </div>
+        <p class="materi-desc">Penjelasan konsep relasi tabel dan pembuatan ERD dasar.</p>
+        <a href="#" class="btn-download">Download PDF</a>
+    </div>
+
+    <!-- Materi 4 -->
+    <div class="materi-card">
+        <div class="materi-header">
+            <div class="materi-icon">🎥</div>
+            <h3 class="materi-title">Jaringan Komputer - Video Tutorial</h3>
+        </div>
+        <p class="materi-desc">Video pengantar topologi jaringan dan perangkat jaringan.</p>
+        <a href="#" class="btn-download">Tonton Video</a>
+    </div>
+
+</div>
+
+</body>
+</html>

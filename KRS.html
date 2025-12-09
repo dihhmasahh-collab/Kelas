@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRS Mahasiswa - SiMaha</title>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f7f7ff;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5A3DF0;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #5A3DF0;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f4f2ff;
+        }
+
+        .total-sks {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #5A3DF0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-submit {
+            margin-top: 25px;
+            padding: 15px 20px;
+            background: #5A3DF0;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #4728d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Pengisian KRS Mahasiswa</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pilih</th>
+                <th>Kode MK</th>
+                <th>Nama Mata Kuliah</th>
+                <th>SKS</th>
+                <th>Dosen</th>
+            </tr>
+        </thead>
+
+        <tbody id="krsTable">
+            <!-- Data otomatis dari JavaScript -->
+        </tbody>
+    </table>
+
+    <div class="total-sks" id="totalSKS">Total SKS: 0</div>
+
+    <button class="btn-submit">Simpan KRS</button>
+
+</div>
+
+<script>
+    const dataKRS = [
+        { kode: "IF201", nama: "Algoritma & Pemrograman", sks: 3, dosen: "Dr. Fajar" },
+        { kode: "IF305", nama: "Basis Data", sks: 3, dosen: "Rina M.Kom" },
+        { kode: "IF411", nama: "Pemrograman Web", sks: 3, dosen: "Bambang M.Kom" },
+        { kode: "IF501", nama: "Metode Numerik", sks: 3, dosen: "Wati M.Kom" },
+        { kode: "IF402", nama: "Jaringan Komputer", sks: 3, dosen: "Dr. Andi" },
+        { kode: "IF208", nama: "Sistem Operasi", sks: 3, dosen: "Nisa M.Kom" },
+        { kode: "IF450", nama: "Riset Operasi", sks: 2, dosen: "Dr. Seno" }
+    ];
+
+    const tableBody = document.getElementById("krsTable");
+    let totalSKS = 0;
+
+    dataKRS.forEach((mk, index) => {
+        const row = `
+            <tr>
+                <td><input type="checkbox" onchange="updateSKS(this, ${mk.sks})"></td>
+                <td>${mk.kode}</td>
+                <td>${mk.nama}</td>
+                <td>${mk.sks}</td>
+                <td>${mk.dosen}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+
+    function updateSKS(checkbox, sks) {
+        if (checkbox.checked) {
+            totalSKS += sks;
+        } else {
+            totalSKS -= sks;
+        }
+        document.getElementById("totalSKS").textContent = "Total SKS: " + totalSKS;
+    }
+</script>
+
+</body>
+</html>

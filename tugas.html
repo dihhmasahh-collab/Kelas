@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+   
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tugas Mahasiswa — SIPKEL</title>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+<style>
+    body {
+        font-family: "Inter", sans-serif;
+        background: #f5f5f7;
+        margin: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    th {
+        background: #444cf7;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+    }
+    tr:hover {
+        background: #f2f2ff;
+    }
+    .btn-submit {
+        padding: 8px 18px;
+        background: #444cf7;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .badge {
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .belum {
+        background: #ffecec;
+        color: #d62828;
+    }
+    .selesai {
+        background: #d4ffd8;
+        color: #2b8a3e;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Daftar Tugas Mahasiswa</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mata Kuliah</th>
+                <th>Judul Tugas</th>
+                <th>Batas</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody id="listTugas">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Data tugas default
+    const defaultTugas = [
+        { mk: "Pemrograman Web", judul: "Tugas Membuat Landing Page", deadline: "2025-01-12", status: "belum", link: "" },
+        { mk: "Metode Numerik", judul: "Laporan Metode Euler", deadline: "2025-01-15", status: "belum", link: "" },
+        { mk: "Basis Data", judul: "Desain ERD & MySQL", deadline: "2025-01-20", status: "belum", link: "" }
+    ];
+
+    // Ambil dari localStorage, jika belum ada gunakan default
+    let tugas = JSON.parse(localStorage.getItem("dataTugas")) || defaultTugas;
+
+    const list = document.getElementById("listTugas");
+
+    function tampilkanTugas() {
+        list.innerHTML = "";
+
+        tugas.forEach((t, i) => {
+            list.innerHTML += `
+                <tr>
+                    <td>${t.mk}</td>
+                    <td>${t.judul}</td>
+                    <td>${t.deadline}</td>
+                    <td>
+                        <span class="badge ${t.status === "belum" ? "belum" : "selesai"}">
+                            ${t.status === "belum" ? "Belum Dikumpulkan" : "Sudah Dikumpulkan"}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn-submit" onclick="kumpulTugas(${i})">Kumpulkan</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // Ketika "Kumpulkan"
+    function kumpulTugas(index) {
+        let link = prompt("Masukkan link tugas (Google Drive / URL File):");
+
+        if (link) {
+            tugas[index].status = "selesai";
+            tugas[index].link = link;
+
+            // Simpan perubahan
+            localStorage.setItem("dataTugas", JSON.stringify(tugas));
+
+            alert("Tugas berhasil dikumpulkan!");
+            tampilkanTugas();
+        }
+    }
+
+    tampilkanTugas();
+</script>
+
+</body>
+</html>

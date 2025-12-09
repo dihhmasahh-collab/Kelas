@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiMaha — Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #5A3DF0, #7C55FF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background: #5A3DF0;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #472ed9;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5A3DF0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Login Mahasiswa</h2>
+
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+
+        <button onclick="login()">Masuk</button>
+
+        <p>Belum punya akun? <a href="register.html">Register</a></p>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            if (!user) {
+                alert("Akun belum terdaftar!");
+                return;
+            }
+
+            if (email === user.email && password === user.password) {
+                alert("Login berhasil!");
+                window.location.href = "index.html"; // ke dashboard
+            } else {
+                alert("Email atau password salah!");
+            }
+        }
+    </script>
+
+</body>
+</html>

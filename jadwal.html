@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Kuliah - SiMaha</title>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f7f7ff;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5A3DF0;
+            margin-bottom: 35px;
+        }
+
+        .schedule-card {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid #5A3DF0;
+            transition: 0.2s;
+        }
+
+        .schedule-card:hover {
+            background: #f4f2ff;
+            transform: translateX(5px);
+        }
+
+        .course-info h3 {
+            margin: 0;
+            font-size: 19px;
+            color: #333;
+        }
+
+        .course-info p {
+            margin: 3px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .course-time {
+            font-weight: bold;
+            color: #5A3DF0;
+            font-size: 15px;
+            text-align: right;
+        }
+
+        .course-icon {
+            font-size: 32px;
+            margin-right: 15px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Jadwal Kuliah Mahasiswa</h1>
+
+    <!-- Jadwal 1 -->
+    <div class="schedule-card">
+        <div class="row">
+            <div class="course-icon">💻</div>
+            <div class="course-info">
+                <h3>Pemrograman Web</h3>
+                <p>Ruang: Lab 3</p>
+            </div>
+        </div>
+        <div class="course-time">
+            Senin <br> 08:00 - 10:00
+        </div>
+    </div>
+
+    <!-- Jadwal 2 -->
+    <div class="schedule-card">
+        <div class="row">
+            <div class="course-icon">📘</div>
+            <div class="course-info">
+                <h3>Algoritma & Pemrograman</h3>
+                <p>Ruang: 204</p>
+            </div>
+        </div>
+        <div class="course-time">
+            Selasa <br> 10:00 - 12:00
+        </div>
+    </div>
+
+    <!-- Jadwal 3 -->
+    <div class="schedule-card">
+        <div class="row">
+            <div class="course-icon">🧮</div>
+            <div class="course-info">
+                <h3>Matematika Informatika</h3>
+                <p>Ruang: 105</p>
+            </div>
+        </div>
+        <div class="course-time">
+            Rabu <br> 08:00 - 10:00
+        </div>
+    </div>
+
+    <!-- Jadwal 4 -->
+    <div class="schedule-card">
+        <div class="row">
+            <div class="course-icon">📊</div>
+            <div class="course-info">
+                <h3>Basis Data</h3>
+                <p>Ruang: Lab 2</p>
+            </div>
+        </div>
+        <div class="course-time">
+            Kamis <br> 09:00 - 11:00
+        </div>
+    </div>
+
+    <!-- Jadwal 5 -->
+    <div class="schedule-card">
+        <div class="row">
+            <div class="course-icon">📝</div>
+            <div class="course-info">
+                <h3>Bahasa Indonesia</h3>
+                <p>Ruang: 105</p>
+            </div>
+        </div>
+        <div class="course-time">
+            Jumat <br> 08:00 - 10:00
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
